@@ -132,8 +132,12 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-export DEVDIR=$HOME # or whatever...
-export PYTHONPATH=$DEVDIR/core/src:$DEVDIR/prototyping/libs:$PYTHONPATH
-
 function svndiff () { svn diff $@ | colordiff | less -R; }
+
+# if the virtualenvwrapper.sh file exists then source it
+# this include virtualenvwrapper for python
+# http://www.doughellmann.com/projects/virtualenvwrapper/
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    . /usr/local/bin/virtualenvwrapper.sh
+fi
 
